@@ -1,0 +1,28 @@
+// Remove Duplicates from Sorted Array
+// Two Pointer Technique
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+function removeDuplicates(nums) {
+    if (nums.length === 0) return 0;
+
+    let i = 0;
+
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[j] !== nums[i]) {
+            i++;
+            nums[i] = nums[j];
+        }
+    }
+
+    return i + 1; // length of unique elements
+}
+
+// Example usage:
+let arr1 = [1, 1, 2];
+console.log(removeDuplicates(arr1)); // 2
+console.log(arr1.slice(0, 2));       // [1, 2]
+
+let arr2 = [0,0,1,1,1,2,2,3,3,4];
+console.log(removeDuplicates(arr2)); // 5
+console.log(arr2.slice(0, 5));       // [0,1,2,3,4]
