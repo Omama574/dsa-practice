@@ -1,23 +1,23 @@
-// Longest Common Prefix
-// Time Complexity: O(n*m) where n = words, m = characters
+// Longest Common Prefix - Vertical Scanning Approach
+// Time Complexity: O(n * m)
 // Space Complexity: O(1)
 
 function longestCommonPrefix(strs) {
-    if (strs.length === 0) return "";
+    if (!strs.length) return "";
 
-    let prefix = strs[0];
+    for (let i = 0; i < strs[0].length; i++) {
+        const char = strs[0][i];
 
-    for (let i = 1; i < strs.length; i++) {
-        while (!strs[i].startsWith(prefix)) {
-            prefix = prefix.slice(0, -1);
-
-            if (prefix === "") return "";
+        for (let j = 1; j < strs.length; j++) {
+            if (i >= strs[j].length || strs[j][i] !== char) {
+                return strs[0].substring(0, i);
+            }
         }
     }
 
-    return prefix;
+    return strs[0];
 }
 
 // Example usage:
-console.log(longestCommonPrefix(["flower","flow","flight"])); // "fl"
-console.log(longestCommonPrefix(["dog","racecar","car"]));     // ""
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"]));    // ""
